@@ -1,0 +1,113 @@
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h4 class="text-themecolor">Dashboard INICIO</h4>
+    </div>
+    <div class="col-md-7 align-self-center text-right">
+        <div class="d-flex justify-content-end align-items-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard INICIO</li>
+            </ol>
+            <button type="button" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div
+        class="col-12">
+
+        <!-- Column -->
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Agregar & Eliminar Filas</h4>
+                <h6 class="card-subtitle">Tu puedes agregar o eliminar filas</h6>
+                <div class="table-responsive">
+                    <!-- <table id="footable-addrow" class="table footable" data-filter="#filter" data-before-filtering="filteringEventHandler" data-page-size="5" data-paging="true" data-filtering="true" data-sorting="true" data-editing="true" data-state="true">
+                        <thead>
+                            <tr>
+                                <th *ngFor="let columna of columnaSistemas">{{columna.title}}</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th id="estado" data-formatter="estado"  data-type="HTMLElement"></th>
+                                <th></th>
+                                <th data-formatter="accion" data-type="HTMLElement"></th> 
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="filaSistemas || filaSistemas.length > 0">
+                            <tr  *ngFor="let fila of filaSistemas">
+                                <td *ngFor="let sistema of fila  | keyvalue "> {{ sistema.value }}</td>
+                            </tr>
+                        </tbody>
+                    </table> -->
+
+                    <table id="footable-addrow" class="table footable" data-filter="#filter" data-before-filtering="filteringEventHandler" data-page-size="5" data-paging="true" data-filtering="true" data-sorting="true" data-editing="true" data-state="true">
+                        
+                    </table>
+
+                </div>
+                <!-- Start Popup Model -->
+                <div class="modal fade" id="editor-modal" tabindex="-1" role="dialog" aria-labelledby="editor-title">
+                    <div class="modal-dialog" role="document">
+                        <form class="modal-content form-horizontal" id="editor">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="editor-title">Agregar Fila</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group required row">
+                                    <label for="TIPO_SISTEMA" class="col-sm-3 control-label">Tipo de Sistema
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="TIPO_SISTEMA" name="TIPO_SISTEMA" placeholder="Tipo de Sistema" required>
+                                    </div>
+                                </div>
+                                <div class="form-group required row">
+                                    <label for="NOMBRE" class="col-sm-3 control-label">
+                                        Nombre</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="NOMBRE" name="NOMBRE" placeholder="Nombre" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="NOMBRE_CORTO" class="col-sm-3 control-label">Nombre
+                                                                                                                                                                                        Corto</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="NOMBRE_CORTO" name="NOMBRE_CORTO" placeholder="Nombre Corto">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="ESTADO" class="col-sm-3 control-label">Estado</label>
+                                    <div
+                                        class="col-sm-9">
+                                        <!-- {# <input type="text" class="form-control" id="ESTADO" name="ESTADO" placeholder="Estado"> #} -->
+                                        <select id="ESTADO" name="ESTADO" data-placeholder="Seleccione estado" class="form-control select2modal input-estado" style="width:100%;">
+                                            <!-- {% for estado in estados["data"]["tabtablas"] %}
+                                                <option value="{{ estado.IDTABLA }}">{{ estado.NOMBRE }}</option>
+                                            {% endfor %} -->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="RUTA" class="col-sm-3 control-label">Ruta</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="RUTA" name="RUTA" placeholder="Ruta" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- End Popup Model -->
+            </div>
+        </div>
+
+    </div>
+</div>

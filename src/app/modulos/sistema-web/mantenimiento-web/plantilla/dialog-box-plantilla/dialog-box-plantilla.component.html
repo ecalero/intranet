@@ -1,0 +1,44 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title>Se desarrolla la siguiente acción :: <strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+  <div class="row" *ngIf="action != 'Delete'; else elseTemplate">
+    <div class="col-md-4">
+<!--       <div class="form-group">
+        <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
+          <input class="form-control" placeholder="{{action}} Nombre" matInput [(ngModel)]="local_data.NOMBRE">
+        </mat-form-field>
+      </div> -->
+
+      <div class="form-group">
+        <label for="inputNombre">Nombre</label>
+        <input type="text" class="form-control" id="inputNombre" aria-describedby="nombreAyuda"
+            placeholder="{{action}} Nombre"  [(ngModel)]="local_data.NOMBRE">
+        <small id="nombreAyuda" class="form-text text-muted"> {{action}} Nombre</small>
+      </div>
+    </div>
+    <div class="col-md-8">
+<!--       <div class="form-group">
+      <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
+        <input class="form-control" placeholder="{{action}} Descripción" matInput [(ngModel)]="local_data.DESCRIPCION">
+      </mat-form-field>
+    </div> -->
+
+    <div class="form-group" >
+      <label for="inputDescripcion">Descripción</label>
+      <input type="text" class="form-control" id="inputDescripcion" aria-describedby="descripcionAyuda"
+          placeholder="{{action}} descripción" [(ngModel)]="local_data.DESCRIPCION">
+      <small id="descripcionAyuda" class="form-text text-muted"> {{action}} descripción </small>
+  </div>
+
+  </div>
+</div>
+  
+<ng-template #elseTemplate>
+  Seguro que quieres eliminar <b>{{local_data.NOMBRE}}</b>?
+</ng-template>
+
+</div>
+<div mat-dialog-actions>
+  <button class="btn btn-primary color-primary float-right m-r-10" (click)="doAction()" color="primary"> {{action}} </button>
+  <button class="btn btn-warning color-secondary float-right " (click)="closeDialog()"  color="secondary"><i class="fas fa-ban"></i> Cancelar</button>
+</div>

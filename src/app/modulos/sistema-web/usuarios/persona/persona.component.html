@@ -1,0 +1,259 @@
+
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h4 class="text-themecolor">Administración de personas</h4>
+    </div>
+    <div class="col-md-7 align-self-center text-right">
+        <div class="d-flex justify-content-end align-items-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Inicio</a></li>
+                <li class="breadcrumb-item active">Administración de personas</li>
+            </ol>
+           <!--  <button type="button" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create
+                New</button> -->
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Start Page Content -->
+<!-- ============================================================== -->
+<!-- row -->
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Crear persona</h4>
+                <h6 class="card-subtitle"> Plantillas que se podrán utilizar en diferentes Webs </h6>
+
+                <mat-tab-group>
+                    <mat-tab> 
+                    <ng-template mat-tab-label>
+                        <i class='fas fa-user-tie'></i> 
+                        <span>Persona</span>
+                    </ng-template> 
+                    <form class="mt-4">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <mat-label for="exampleInputDOCUMENTO">DOCUMENTO</mat-label>
+                                        <mat-select placeholder="Tipo de documento" [formControl]="TIPODOCUMENTO">
+                                          <mat-option *ngFor="let tipoDocumento of listTipoDocumento['tabtablas']" [value]="tipoDocumento.IDTABLA">
+                                            {{tipoDocumento.NOMBRE}}
+                                          </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <mat-form-field class="example-full-width">
+                                      <mat-label for="exampleInputNRODOCUMENTO">Número de documento</mat-label>
+                                      <input matInput placeholder="Número de documento" [formControl]="NRODOCUMENTO" (focusout)="onFocusOutEvent($event)">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                    <mat-radio-group aria-label="Select an option" [formControl]="TIPO_PERSONA">
+                                      <mat-label for="exampleInputTIPOPERSONA">Tipo de Persona: </mat-label>
+                                      <mat-radio-button *ngFor="let tipoPersona of listTipoPersona['tabtablas']" [value]="tipoPersona.IDTABLA">
+                                        {{tipoPersona.NOMBRE}}
+                                      </mat-radio-button>
+                                    </mat-radio-group>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <mat-form-field class="example-full-width">
+                                    <mat-label for="exampleInputNRODOCUMENTO">Número de documento</mat-label>
+                                    <input matInput placeholder="Número de documento" [formControl]="NRODOCUMENTO">
+                                  </mat-form-field>
+                              </div>
+                          </div>
+                      </div>
+
+                        
+    
+                    </form>
+                </mat-tab>
+                    <mat-tab label="Dirección">
+                        <ng-template mat-tab-label>
+                            <i class="fas fa-address-card"></i>
+                            <span>Dirección</span>
+                        </ng-template> 
+                         Content 2 
+                        </mat-tab>
+                    <mat-tab label="Correo">
+                        <ng-template mat-tab-label>
+                            <i class="fas fa-at"></i>
+                            <span>Correo</span>
+                        </ng-template> 
+                        Content 3 
+                    </mat-tab>
+
+                    <mat-tab label="Telefono">
+                        <ng-template mat-tab-label>
+                            <i class='fas fa-phone'></i>
+                            <span>Teléfonos</span>
+                        </ng-template> 
+                        Content 4
+                    </mat-tab>
+                </mat-tab-group>
+   
+
+
+                <form class="mt-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputUSUARIO">USUARIO</label>
+                                <input type="text" class="form-control" id="inputUSUARIO" aria-describedby="USUARIOAyuda"
+                                    placeholder="Ingrese un usuario" [formControl]="USUARIO">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputCLAVE">CLAVE</label>
+                                <input type="text" class="form-control" id="inputCLAVE" aria-describedby="CLAVEAyuda"
+                                    placeholder="Ingrese una clave" [formControl]="CLAVE">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">&nbsp;</label>
+                                <button type="submit" class=" form-control btn btn-primary color-primary" (click)="registrarUsuario()"><i class="fa fa-plus-circle"></i> Agregar</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- row -->
+
+<div class="row">
+
+    <!-- <button class="btn btn-lg btn-outline-primary" (click)="open()">Launch demo modal</button> -->
+
+    <div class="col-8">
+        <div fxLayout>
+            <mat-form-field fxFlex="50%">
+              <input matInput type="text"  (keyup)="doFilter($any($event.target).value)" placeholder="Buscar en la tabla">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="col-4">
+        <button class="btn btn-primary color-primary float-right m-b-10"  mat-button (click)="openDialog('Agregar',{})" mat-flat-button ><i class="fa fa-plus-circle"></i> Agregar nuevo usuario</button>
+    </div>
+    <div class="col-12">
+
+        <div class="table-responsive">
+
+
+
+            <table  class="table table-bordered m-b-0 toggle-arrow-tiny  table-hover contact-list color-table red-table" mat-table [dataSource]="dataSource" matSort #tabla1>
+
+                <ng-container matColumnDef="USUARIO">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> USUARIO </th>
+                  <td mat-cell *matCellDef="let element"> {{element.USUARIO}} </td>
+                </ng-container>
+                <!-- <ng-container matColumnDef="CLAVE">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> CLAVE </th>
+                  <td mat-cell *matCellDef="let element"> <input type="password" disabled value="{{element.CLAVE}}">  </td>
+                </ng-container> -->
+                <ng-container matColumnDef="SYSACTUALIZACION">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> FECHA ACTUALIZACION </th>
+                    <td mat-cell *matCellDef="let element" [innerHTML]="element.SYSACTUALIZACION">   </td>
+                  </ng-container>
+
+                 <ng-container matColumnDef="SYSCREACION">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> FECHA CREACION </th>
+                    <td mat-cell *matCellDef="let element"> {{element.SYSCREACION}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="ESTADO">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ESTADO </th>
+                    <td mat-cell *matCellDef="let element; let i = index ">
+                      <mat-slide-toggle
+                          [(ngModel)]="estado[element.IDUSUARIO].ESTADO"
+                          class="example-margin"
+                          [color]="colorEstado"
+                          (change)="cambiarEstado(element)">
+                        <!--  {{estado[i].NOMBRE}} {{estado[i].ESTADO}} -->
+                      </mat-slide-toggle>
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="BAJA">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> BAJA </th>
+                    <td mat-cell *matCellDef="let element">
+                      <mat-slide-toggle
+                          [(ngModel)]="baja[element.IDUSUARIO].ESTADO"
+                          class="example-margin"
+                          [color]="colorBaja"
+                          (change)="cambiarBaja(element)">
+                        <!--  {{estado[i].NOMBRE}} {{estado[i].ESTADO}} -->
+                      </mat-slide-toggle>
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="NROINTENTOS">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> NROINTENTOS </th>
+                    <td mat-cell *matCellDef="let element"> {{element.NROINTENTOS}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="ALIAS">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ALIAS </th>
+                    <td mat-cell *matCellDef="let element"> {{element.ALIAS}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="DESCRIPCION">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> DESCRIPCION </th>
+                    <td mat-cell *matCellDef="let element"> {{element.DESCRIPCION}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="IDPERSONA">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> NOMBRES </th>
+                    <td mat-cell *matCellDef="let element"> {{element.NOMBRES}} </td>
+                  </ng-container>
+
+                <ng-container matColumnDef="ROLES">
+                  <th mat-header-cell *matHeaderCellDef > ROLES </th>
+                  <td mat-cell *matCellDef="let element" class="text-center">
+                    <a (click)="openDialogRoles(element)" class="text-info"> <i class="fas fa-user-cog fa-lg"></i> </a>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="ACCIONES">
+                    <th mat-header-cell *matHeaderCellDef> ACCIONES </th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                      <!-- <button mat-icon-button color="accent" (click)="redirectToUpdate(element.id)">
+                          <mat-icon class="mat-18">system_update</mat-icon>
+                      </button> -->
+                      <!-- <mat-icon class="mat-18">system_update</mat-icon> -->
+                      <a (click)="resetearClave(element)" class="text-primary"> <i class="fas fa-sync-alt fa-lg"></i> </a>
+                      <a (click)="openDialog('Actualizar',element)" class="text-warning"> <i class="fas fa-edit fa-lg"></i> </a>
+                      <a  (click)="openDialog('Eliminar',element)" class="text-primary"> <i class="fa fa-trash fa-lg"></i> </a>
+                    </td>
+                  </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+              </table>
+              <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 50, 100]" aria-label="Selecionar página">
+            </mat-paginator>
+
+
+        </div>
+
+        </div>
+        </div>

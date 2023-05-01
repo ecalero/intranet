@@ -1,0 +1,7 @@
+.mat-cell a {
+    margin-left: 1px;
+    display: inline-block;
+}
+.table th, .table td{
+    vertical-align: middle;
+}

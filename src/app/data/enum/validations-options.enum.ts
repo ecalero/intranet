@@ -1,0 +1,4 @@
+export enum ENUM_VALIDATION_OPTIONS {
+    CORREO = 'CORREO',
+    CLAVE = 'CLAVE'
+}

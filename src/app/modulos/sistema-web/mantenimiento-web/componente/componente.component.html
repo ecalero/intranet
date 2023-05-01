@@ -1,0 +1,175 @@
+
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h4 class="text-themecolor">Administración de componentes</h4>
+    </div>
+    <div class="col-md-7 align-self-center text-right">
+        <div class="d-flex justify-content-end align-items-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Inicio</a></li>
+                <li class="breadcrumb-item active">Administración de componentes</li>
+            </ol>
+           <!--  <button type="button" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create
+                New</button> -->
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Start Page Content -->
+<!-- ============================================================== -->
+<!-- row -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Crear componente</h4>
+                <h6 class="card-subtitle"> Plantillas que se podr+an utilizar en diferenbtes Webs </h6>
+                <form class="mt-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Nombre</label>
+                                <input type="text" class="form-control" id="inputNombre" aria-describedby="nombreAyuda"
+                                    placeholder="Ingrese un nombre" [formControl]="nombre">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Título</label>
+                                <input type="text" class="form-control" id="inputTitulo" aria-describedby="tituloAyuda"
+                                    placeholder="Ingrese una título" [formControl]="titulo">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">&nbsp;</label>
+                                <button type="submit" class=" form-control btn btn-primary color-primary" (click)="registrarComponente()"><i class="fa fa-plus-circle"></i> Agregar</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- row -->
+
+<div class="row">
+
+    <!-- <button class="btn btn-lg btn-outline-primary" (click)="open()">Launch demo modal</button> -->
+
+    <div class="col-8">
+        <div fxLayout>
+            <mat-form-field fxFlex="50%">
+              <input matInput type="text"  (keyup)="doFilter($any($event.target).value)" placeholder="Buscar en la tabla">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="col-4">
+        <button class="btn btn-primary color-primary float-right m-b-10"  mat-button (click)="openDialog('Agregar',{})" mat-flat-button ><i class="fa fa-plus-circle"></i> Agregar nuevo componente</button>
+    </div>
+    <div class="col-12">
+
+        <div class="table-responsive">
+
+            <table  class="table table-bordered m-b-0 toggle-arrow-tiny  table-hover contact-list color-table red-table" mat-table [dataSource]="dataSource" matSort #tabla1>
+
+                <ng-container matColumnDef="IDCOMPONENTE">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                  <td mat-cell *matCellDef="let element"> {{element.IDCOMPONENTE}} </td>
+                </ng-container>
+                <ng-container matColumnDef="NOMBRE">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> NOMBRE </th>
+                  <td mat-cell *matCellDef="let element"> {{element.NOMBRE}} </td>
+                </ng-container>
+                <ng-container matColumnDef="TITULO">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> TITULO </th>
+                  <td mat-cell *matCellDef="let element"> {{element.TITULO}} </td>
+                </ng-container>
+                <ng-container matColumnDef="RESUMEN">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> RESUMEN </th>
+                    <td mat-cell *matCellDef="let element" [innerHTML]="element.RESUMEN">  </td>
+                  </ng-container>
+
+
+                  <ng-container matColumnDef="CONTENIDO">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> CONTENIDO </th>
+                    <td mat-cell *matCellDef="let element" > <ng-container>{{element.CONTENIDO}} </ng-container> </td>
+                  </ng-container>
+                  <ng-container matColumnDef="IDCOMPONENTEPADRE">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> IDCOMPONENTEPADRE </th>
+                    <td mat-cell *matCellDef="let element"> {{element.IDCOMPONENTEPADRE}} </td>
+                  </ng-container>
+                 <ng-container matColumnDef="FECHA_CREACION">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> FECHA CREACION </th>
+                    <td mat-cell *matCellDef="let element"> {{element.FECHA_CREACION}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="IDUSUARIOCREACION">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> USUARIO CREADOR </th>
+                    <td mat-cell *matCellDef="let element"> {{element.IDUSUARIOCREACION}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="FECHA_ACTUALIZACION">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> FECHA ACTUALIZACION </th>
+                    <td mat-cell *matCellDef="let element"> {{element.FECHA_ACTUALIZACION}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="IDUSUARIOACTUALIZACION">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> USUARIO ACTUALIZA </th>
+                    <td mat-cell *matCellDef="let element"> {{element.IDUSUARIOACTUALIZACION}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="ESTADO">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ESTADO </th>
+                    <td mat-cell *matCellDef="let element"> {{element.ESTADO}} </td>
+                  </ng-container>
+
+                <ng-container matColumnDef="DETALLE">
+                  <th mat-header-cell *matHeaderCellDef > DETALLE </th>
+                  <td mat-cell *matCellDef="let element" class="text-center">
+                    <!-- <mat-icon class="mat-18">reorder</mat-icon> -->
+                    <!-- <button mat-icon-button color="primary" (click)="redirectToDetails(element.id)">
+                        <mat-icon class="mat-18">reorder</mat-icon>
+                    </button> -->
+                    <a href="#" class="text-info"> <i class="fas fa-list-alt fa-lg"></i></a>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="ACTUALIZAR">
+                    <th mat-header-cell *matHeaderCellDef> ACTUALIZAR </th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                      <!-- <button mat-icon-button color="accent" (click)="redirectToUpdate(element.id)">
+                          <mat-icon class="mat-18">system_update</mat-icon>
+                      </button> -->
+                      <!-- <mat-icon class="mat-18">system_update</mat-icon> -->
+                      <a (click)="openDialog('Actualizar',element)" class="text-warning"> <i class="fas fa-edit fa-lg"></i> </a>
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="ELIMINAR">
+                      <th mat-header-cell *matHeaderCellDef> ELIMINAR </th>
+                      <td mat-cell *matCellDef="let element" class="text-center">
+                        <!-- <button mat-icon-button color="warn" (click)="redirectToDelete(element.id)">
+                            <mat-icon class="mat-18">delete</mat-icon>
+                        </button> -->
+                        <!-- <mat-icon class="mat-18">delete</mat-icon> -->
+                        <a  (click)="openDialog('Eliminar',element)" class="text-primary"> <i class="fa fa-trash fa-lg"></i> </a>
+                      </td>
+                    </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+              </table>
+              <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 50, 100]" aria-label="Selecionar página">
+            </mat-paginator>
+
+
+        </div>
+
+        </div>
+        </div>

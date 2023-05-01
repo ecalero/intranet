@@ -1,0 +1,83 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title>Se desarrolla la siguiente acción :: <strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+  <!--input ocultos-->
+  <input type="hidden" class="form-control" id="inputIDUSUARIOCREACION" aria-describedby="IDUSUARIOCREACION"
+              [(ngModel)]="local_data.IDUSUARIOCREACION" >
+
+  <div class="row" *ngIf="action != 'Delete'; else elseTemplate">
+    <div class="col-md-4">
+<!--       <div class="form-group">
+        <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
+          <input class="form-control" placeholder="{{action}} Nombre" matInput [(ngModel)]="local_data.NOMBRE">
+        </mat-form-field>
+      </div> -->
+
+      <div class="form-group">
+        <label for="inputNombre">Nombre</label>
+        <input type="text" class="form-control" id="inputNombre" aria-describedby="nombreAyuda"
+            placeholder="{{action}} Nombre"  [(ngModel)]="local_data.NOMBRE">
+        <small id="nombreAyuda" class="form-text text-muted"> {{action}} Nombre</small>
+      </div>
+    </div>
+    <div class="col-md-6">
+<!--       <div class="form-group">
+      <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
+        <input class="form-control" placeholder="{{action}} Descripción" matInput [(ngModel)]="local_data.DESCRIPCION">
+      </mat-form-field>
+    </div> -->
+
+    <div class="form-group" >
+      <label for="inputtitulo">Título</label>
+      <input type="text" class="form-control" id="inputTitulo" aria-describedby="tituloAyuda"
+          placeholder="{{action}} título" [(ngModel)]="local_data.TITULO">
+      <small id="tituloAyuda" class="form-text text-muted"> {{action}} título </small>
+  </div>
+
+  </div>
+  <div class="col-md-2">
+    <!--       <div class="form-group">
+          <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
+            <input class="form-control" placeholder="{{action}} Descripción" matInput [(ngModel)]="local_data.DESCRIPCION">
+          </mat-form-field>
+        </div> -->
+
+        <div class="form-group" >
+          <label for="inputtitulo">Estado</label>
+          <select  class="form-control" id="inputEstado" aria-describedby="tituloEstado"
+              [(ngModel)]="local_data.ESTADO">
+              <option *ngFor="let estado of listEstadoComponente['tabtablas']" [ngValue]="estado.IDTABLA">{{estado.NOMBRE}}</option>
+          </select>
+      </div>
+
+      </div>
+
+  <label for="inputNombre">Resumen</label>
+
+  <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="local_data.RESUMEN"></angular-editor>
+
+<!--   <ckeditor
+  [(ngModel)]="local_data.RESUMEN"
+  [config]="myCkeditorConfig"
+  ></ckeditor> -->
+  <label for="inputContenido">Contenido</label>
+  <ckeditor
+  [(ngModel)]="local_data.CONTENIDO"
+  [config]="myCkeditorConfig"
+  ></ckeditor>
+
+
+
+
+
+</div>
+
+<ng-template #elseTemplate>
+  Seguro que quieres eliminar <b>{{local_data.NOMBRE}}</b>?
+</ng-template>
+
+</div>
+<div mat-dialog-actions>
+  <button class="btn btn-primary color-primary float-right m-r-10" (click)="doAction()" color="primary"> {{action}} </button>
+  <button class="btn btn-warning color-secondary float-right " (click)="closeDialog()"  color="secondary"><i class="fas fa-ban"></i> Cancelar</button>
+</div>

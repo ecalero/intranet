@@ -1,0 +1,97 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title>USUARIO :: <strong>{{action}}</strong> 111</h1>
+<div mat-dialog-content>
+    <!--input ocultos-->
+    <input type="hidden" class="form-control" id="inputIDUSUARIOCREACION" aria-describedby="IDUSUARIOCREACION"
+        [(ngModel)]="local_data.IDUSUARIOCREACION">
+
+    <div class="row" *ngIf="action != 'Delete'; else elseTemplate">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="inputUsuario">Usuario</label>
+                <input type="text" class="form-control" id="inputUsuario" aria-describedby="nombreAyuda"
+                    placeholder="{{action}} Usuario" [(ngModel)]="local_data.USUARIO">
+                <small id="nombreUsuario" class="form-text text-muted"> {{action}} Usuario</small>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="inputClave">Clave</label>
+                <input type="password" class="form-control" id="inputClave" aria-describedby="tituloClave"
+                    placeholder="{{action}} Clave" [(ngModel)]="local_data.CLAVE">
+                <small id="tituloUsuario" class="form-text text-muted"> {{action}} Clave </small>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="inputEstado">Estado</label>
+                <select class="form-control" id="inputEstado" aria-describedby="usuarioEstado"
+                    [(ngModel)]="local_data.ESTADO">
+                    <option *ngFor="let estado of listEstadoComponente['tabtablas']" [ngValue]="estado.IDTABLA">
+                        {{estado.NOMBRE}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="inputBaja">Baja</label>
+                <select class="form-control" id="inputBaja" aria-describedby="usuarioBaja"
+                    [(ngModel)]="local_data.BAJA">
+                    <option *ngFor="let estado of listEstadoComponente['tabtablas']" [ngValue]="estado.IDTABLA">
+                        {{estado.NOMBRE}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="action != 'Delete'; else elseTemplate">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="inputUsuario">Usuario</label>
+                <input type="text" class="form-control" id="inputUsuario" aria-describedby="nombreAyuda"
+                    placeholder="{{action}} Usuario" [(ngModel)]="local_data.USUARIO">
+                <small id="nombreUsuario" class="form-text text-muted"> {{action}} Usuario</small>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="inputClave">Clave</label>
+                <input type="password" class="form-control" id="inputClave" aria-describedby="tituloClave"
+                    placeholder="{{action}} Clave" [(ngModel)]="local_data.CLAVE">
+                <small id="tituloUsuario" class="form-text text-muted"> {{action}} Clave </small>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="inputEstado">Estado</label>
+                <select class="form-control" id="inputEstado" aria-describedby="usuarioEstado"
+                    [(ngModel)]="local_data.ESTADO">
+                    <option *ngFor="let estado of listEstadoComponente['tabtablas']" [ngValue]="estado.IDTABLA">
+                        {{estado.NOMBRE}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="inputBaja">Baja</label>
+                <select class="form-control" id="inputBaja" aria-describedby="usuarioBaja"
+                    [(ngModel)]="local_data.BAJA">
+                    <option *ngFor="let estado of listEstadoComponente['tabtablas']" [ngValue]="estado.IDTABLA">
+                        {{estado.NOMBRE}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #elseTemplate>
+        Seguro que quieres eliminar <b>{{local_data.NOMBRE}}</b>?
+    </ng-template>
+
+</div>
+<div mat-dialog-actions>
+    <button class="btn btn-primary color-primary float-right m-r-10" (click)="doAction()" color="primary"> {{action}}
+    </button>
+    <button class="btn btn-warning color-secondary float-right " (click)="closeDialog()" color="secondary"><i
+            class="fas fa-ban"></i> Cancelar</button>
+</div>
+

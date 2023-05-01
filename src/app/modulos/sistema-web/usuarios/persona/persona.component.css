@@ -1,0 +1,14 @@
+:host /deep/ .mat-mdc-tab.mdc-tab{
+    height: 70px;
+  }
+  
+  :host /deep/ .mat-mdc-tab-labels i{
+    font-size: x-large;
+  }
+  :host /deep/ .mat-mdc-tab-labels span{
+    display: block;
+    font-weight: bold;
+  }
+  :host /deep/ .mat-mdc-tab:not(.mat-mdc-tab-disabled) .mdc-tab__text-label, .mat-mdc-tab-link:not(.mat-mdc-tab-disabled) .mdc-tab__text-label{
+    margin-top: 15px;
+  }

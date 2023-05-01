@@ -1,0 +1,1 @@
+aqui se crea esa carpeta para guardar el esqueleto o los templates que se utilizaran para cada caso

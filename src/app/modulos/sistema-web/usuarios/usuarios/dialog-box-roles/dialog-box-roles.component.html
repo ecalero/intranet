@@ -1,0 +1,75 @@
+<p>dialog-box-roles works!</p>
+
+<mat-form-field appearance="fill">
+    <mat-label>Toppings</mat-label>
+    <mat-select [formControl]="toppings" multiple>
+      <mat-select-trigger>
+        {{toppings.value?.[0] || ''}}
+        <span *ngIf="(toppings.value?.length || 0) > 1" class="example-additional-selection">
+          (+{{(toppings.value?.length || 0) - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+<br/>
+
+<h2>6. Multiple values demo (tags)</h2>
+
+<ng-select2 [data]="exampleData"
+            [options]="options"
+            [(ngModel)]="value">
+</ng-select2>
+<br/>
+<br/> Selected values: {{ value }}
+
+<div class="table-responsive">
+
+
+
+  <table  class="table table-bordered m-b-0 toggle-arrow-tiny  table-hover contact-list color-table red-table" mat-table [dataSource]="dataSource" matSort #tabla1>
+
+      <ng-container matColumnDef="NOMBRE">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ROL </th>
+        <td mat-cell *matCellDef="let element" [innerHTML]="element.NOMBRE">   </td>
+      </ng-container>
+      <ng-container matColumnDef="DESCRIPCION">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> DESCRIPCION </th>
+          <td mat-cell *matCellDef="let element" [innerHTML]="element.DESCRIPCION">   </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ESTADO">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ESTADO </th>
+          <td mat-cell *matCellDef="let element; let i = index ">
+            <mat-slide-toggle
+                [(ngModel)]="estado[element.IDROL].ESTADO"
+                class="example-margin"
+                [color]="colorEstado"
+                (change)="cambiarEstado(element)">
+              <!--  {{estado[i].NOMBRE}} {{estado[i].ESTADO}} -->
+            </mat-slide-toggle>
+          </td>
+        </ng-container>
+
+      <ng-container matColumnDef="ACCIONES">
+          <th mat-header-cell *matHeaderCellDef> ACCIONES </th>
+          <td mat-cell *matCellDef="let element" class="text-center">
+            <!-- <button mat-icon-button color="accent" (click)="redirectToUpdate(element.id)">
+                <mat-icon class="mat-18">system_update</mat-icon>
+            </button> -->
+            <!-- <mat-icon class="mat-18">system_update</mat-icon> -->
+            <!-- <a (click)="openDialog('Actualizar',element)" class="text-warning"> <i class="fas fa-edit fa-lg"></i> </a>
+            <a  (click)="openDialog('Eliminar',element)" class="text-primary"> <i class="fa fa-trash fa-lg"></i> </a> -->
+          </td>
+        </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 50, 100]" aria-label="Selecionar página">
+  </mat-paginator>
+
+
+</div>
