@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-//cambio simple
+//cambio simple 2
 export class AppComponent {
   title = 'intranet';
 
